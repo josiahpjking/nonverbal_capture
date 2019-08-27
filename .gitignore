@@ -1,2 +1,4 @@
 #exclude videos
 tests/*.mp4
+tests/*.mov
+tests/*.MOV
