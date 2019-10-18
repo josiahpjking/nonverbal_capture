@@ -50,18 +50,21 @@ face_detected=0
 
 
 #open file to write for skin movements
-fskin = open(str(args["video"]+"_skin.csv"),'w')
-headers=["frame","timestamp","motion","xList","yList","wList","hList"]
-writerskin=csv.DictWriter(fskin,fieldnames=headers)
-writerskin.writeheader()
+
+#fskin = open(str(args["video"]+"_skin.csv"),'w')
+#headers=["frame","timestamp","motion","xList","yList","wList","hList"]
+#writerskin=csv.DictWriter(fskin,fieldnames=headers)
+#writerskin.writeheader()
 
 #open file to write for faces pos
-facepos_file = open(str(args["video"]+"_facepos.csv"),'w')
-fpheaders=["frame","timestamp","facex","facey","facew","faceh"]
-writerfacepos=csv.DictWriter(facepos_file,fieldnames=fpheaders)
-writerfacepos.writeheader()
+
+#facepos_file = open(str(args["video"]+"_facepos.csv"),'w')
+#fpheaders=["frame","timestamp","facex","facey","facew","faceh"]
+#writerfacepos=csv.DictWriter(facepos_file,fieldnames=fpheaders)
+#writerfacepos.writeheader()
 
 #open file to write for faces landmarks
+
 face_file = open(str(args["video"]+"_face.csv"),'w')
 fheaders=["frame","timestamp","landmarks"]
 writerface=csv.DictWriter(face_file,fieldnames=fheaders)
@@ -139,7 +142,9 @@ for i in range(length):
 			face = clean_frame[int(y-(h*r)):int(y+h+(h*r)), int(x-(w*r)):int(x+w+(w*r))]
 			#draw rectangle around face in frame output (note, these are enlarged because otherwise includes top of head, neck etc.,
 			cv2.rectangle(frame, (int(x-(w*r)), int(y-(h*r))), (int(x+w+(w*r)), int(y+h+(h*r))), (255, 255, 0), 2)
-			writerfacepos.writerow({"frame":frame_id,"timestamp":time_id,"facex":x,"facey":y,"facew":w,"faceh":h})
+
+#			writerfacepos.writerow({"frame":frame_id,"timestamp":time_id,"facex":x,"facey":y,"facew":w,"faceh":h})
+
 			#block out face area in blurred skin frame (so that doesn't pick up as skin movement)
 			#cv2.rectangle(blur_hsv, (int(x-(w*r)), int(y-(h*r))), (int(x+w+(w*r)), int(y+h+(h*r))), (255, 0, 0), -1)
 			
@@ -320,7 +325,7 @@ for i in range(length):
 		skin_data.append(skin_movement)
 		frame_data.append(frame_id)
 		face_data.append(face_landmarks)
-		writerskin.writerow({"frame":i,"timestamp":time_id,"motion":str(skin_movement),"xList":xList, "yList":yList, "wList":wList, "hList":hList})
+#		writerskin.writerow({"frame":i,"timestamp":time_id,"motion":str(skin_movement),"xList":xList, "yList":yList, "wList":wList, "hList":hList})
 	#put text on frames.
 		cv2.putText(frame, "frame_movement: {}".format(frame_movement), (10, 20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 		cv2.putText(skin_canv, "skin_movement: {}".format(skin_movement), (10, 20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
